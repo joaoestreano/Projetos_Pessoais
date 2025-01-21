@@ -1,0 +1,77 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    min-height: 100%; /* Garante que o body tenha altura mínima de 100% */
+    overflow-x: hidden; /* Não permite rolagem horizontal */
+    position: relative;
+    padding-bottom: 50px; /* Garantir que o footer não sobreponha o conteúdo */
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    background-color: #1e3a8a;
+    color: white;
+    padding: 15px;
+    text-align: center;
+    position: relative;
+    z-index: 10;
+}
+
+h1 {
+    font-size: 2.5em;
+    margin-bottom: 0;
+}
+
+section {
+    padding: 20px;
+    margin: 0 10%;
+    z-index: 20;
+    position: relative;
+    flex-grow: 1; /* Permite que o conteúdo se expanda e ocupe a área restante */
+}
+
+h2 {
+    color: #1e3a8a;
+    margin-top: 20px;
+}
+
+p {
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+ul {
+    list-style-type: none;
+}
+
+ul li {
+    margin-bottom: 10px;
+}
+
+footer {
+    background-color: #1e3b8a71;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    position: relative;
+    width: 100%;
+    z-index: 10;
+}
+
+canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1; /* Canvas fica atrás do conteúdo */
+    pointer-events: none; /* Garante que o canvas não interfira com os cliques no conteúdo */
+    width: 100%;
+    height: 100%;
+}

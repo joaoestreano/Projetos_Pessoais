@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Amor</title>
+    <style>
+        /* Estilos Gerais */
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(45deg, #ff8a00, #e52e71);
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+            animation: gradientAnimation 10s ease infinite;
+        }
+
+        /* Animação de fundo */
+        @keyframes gradientAnimation {
+            0% { background: linear-gradient(45deg, #ff8a00, #e52e71); }
+            50% { background: linear-gradient(45deg, #ff2a68, #f2a900); }
+            100% { background: linear-gradient(45deg, #ff8a00, #e52e71); }
+        }
+
+        /* Mensagem de Te Amo */
+        .message {
+            color: white;
+            font-size: 40px;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 2s;
+        }
+
+        /* Efeito de corações flutuando */
+        .heart {
+            position: absolute;
+            font-size: 30px;
+            animation: heartAnimation 3s ease infinite;
+            pointer-events: none;
+            user-select: none;
+        }
+
+        /* Animação dos corações flutuando */
+        @keyframes heartAnimation {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-150px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Botão de Recomeçar (opcional) */
+        .restart-btn {
+            position: absolute;
+            bottom: 20px;
+            padding: 10px 20px;
+            background-color: #ff2a68;
+            color: white;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 5px;
+            opacity: 0.8;
+        }
+
+        .restart-btn:hover {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <!-- Mensagem de Te Amo -->
+    <div id="message" class="message">Te Amo, Minha Linda!</div>
+
+    <!-- Botão de reinício -->
+    <button class="restart-btn" onclick="restartPage()">Recomeçar</button>
+
+    <script>
+        // Função para exibir a mensagem com animação
+        function showMessage() {
+            const message = document.getElementById("message");
+            setTimeout(() => {
+                message.style.opacity = 1;
+            }, 1000); // Atraso de 1 segundo para aparecer
+        }
+
+        // Função para adicionar corações ao passar o mouse
+        function addHeart(e) {
+            const heart = document.createElement("div");
+            heart.textContent = "❤️";
+            heart.classList.add("heart");
+            heart.style.left = `${e.pageX - 15}px`; // Ajuste para a posição do mouse
+            heart.style.top = `${e.pageY - 15}px`;
+
+            // Adiciona o coração ao corpo
+            document.body.appendChild(heart);
+
+            // Remover o coração após a animação
+            setTimeout(() => {
+                heart.remove();
+            }, 3000);
+        }
+
+        // Função para reiniciar a página
+        function restartPage() {
+            location.reload();
+        }
+
+        // Mostrar a mensagem de "Te Amo"
+        showMessage();
+
+        // Adicionar corações no mousemove
+        document.body.addEventListener("mousemove", addHeart);
+    </script>
+</body>
+</html>

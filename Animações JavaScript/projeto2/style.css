@@ -1,0 +1,154 @@
+/* Resetando margens e preenchimento */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background-color: #0b0b45b7;
+    font-family: Arial, sans-serif;
+    overflow: hidden; /* Impede a barra de rolagem */
+    color: white;
+}
+
+/* Contêiner da animação das estrelas */
+#stars {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Impede que a animação interfira na interação do usuário */
+    z-index: -2; /* Coloca a animação atrás do conteúdo */
+}
+
+/* Estilos das estrelas */
+.star {
+    z-index: -1;
+    position: absolute;
+    width: 3px; /* Tamanho inicial das estrelas */
+    height: 3px;
+    background-color: white;
+    border-radius: 50%;
+    opacity: 0.8; /* Maior opacidade para brilho */
+    animation: fall 5s infinite linear, trail 2s infinite ease-in-out;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.8); /* Brilho ao redor das estrelas */
+    /* Adicionando uma posição inicial aleatória */
+    left: calc(100% * random(1)); /* Posição aleatória horizontal */
+}
+
+/* Animação de queda */
+@keyframes fall {
+    0% {
+        transform: translateY(-100vh) translateX(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh) translateX(50px); /* Movimento para baixo e lateral */
+        opacity: 0;
+    }
+}
+
+/* Animação de rastro */
+@keyframes trail {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.5;
+        transform: scale(2); /* Expande o rastro */
+    }
+    100% {
+        opacity: 0;
+        transform: scale(3); /* Expande ainda mais o rastro */
+    }
+}
+
+/* Estilos do conteúdo */
+.content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1; /* Garante que o conteúdo fique acima da animação */
+    text-align: center;
+    padding: 30px;
+    max-width: 800px;
+    width: 90%;
+    background-color: rgba(0, 0, 0, 0.247); /* Fundo semi-transparente para melhorar a leitura */
+    border-radius: 10px;
+}
+
+/* Estilo para o título */
+h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+}
+
+/* Estilo para subtítulos */
+h2 {
+    font-size: 2em;
+    margin-top: 30px;
+}
+
+/* Estilo para os parágrafos */
+p {
+    font-size: 1.5em;
+    margin: 20px 0;
+}
+
+/* Estilos para a lista */
+ul {
+    list-style: none;
+    padding: 0;
+    font-size: 1.2em;
+}
+
+ul li {
+    margin: 10px 0;
+}
+
+/* Estilos para os links */
+a {
+    color: #add8e6;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Estilo para o rodapé */
+footer {
+    margin-top: 50px;
+    font-size: 1em;
+    color: #add8e6;
+}
+
+/* Criando estrelas com tamanhos e posições variadas */
+.star:nth-child(odd) {
+    width: 4px;
+    height: 4px;
+    animation-duration: 7s;
+    animation-delay: -2s;
+}
+
+.star:nth-child(even) {
+    width: 6px;
+    height: 6px;
+    animation-duration: 6s;
+    animation-delay: -1s;
+}
+
+/* Adicionando algumas variações para uma maior aleatoriedade */
+.star:nth-child(3n) {
+    width: 5px;
+    height: 5px;
+    animation-duration: 8s;
+    animation-delay: -0.5s;
+}

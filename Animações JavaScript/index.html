@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fogo de Artifício de Corações</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #2c3e50;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .heart {
+            position: absolute;
+            font-size: 30px;
+            opacity: 1;
+            animation: firework 1s ease-out forwards;
+        }
+        @keyframes firework {
+            0% {
+                transform: scale(1) translate(0, 0);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(0.5) translate(var(--x), var(--y));
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <script>
+        document.body.addEventListener("click", (e) => {
+            const heartCount = 20;
+            for (let i = 0; i < heartCount; i++) {
+                const heart = document.createElement("div");
+                heart.textContent = "❤️";
+                heart.classList.add("heart");
+
+                const angle = Math.random() * 2 * Math.PI;
+                const distance = Math.random() * 100 + 50;
+                const x = distance * Math.cos(angle);
+                const y = distance * Math.sin(angle);
+
+                heart.style.left = `${e.pageX - 15}px`;
+                heart.style.top = `${e.pageY - 15}px`;
+                heart.style.setProperty("--x", `${x}px`);
+                heart.style.setProperty("--y", `${y}px`);
+
+                document.body.appendChild(heart);
+
+                setTimeout(() => heart.remove(), 1000); // Remove a partícula após a animação
+            }
+        });
+    </script>
+</body>
+</html>

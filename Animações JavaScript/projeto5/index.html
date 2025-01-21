@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animação - Bola Saltando</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #e0e0e0;
+        }
+        #ball {
+            width: 50px;
+            height: 50px;
+            background-color: blue;
+            border-radius: 50%;
+            position: absolute;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="ball"></div>
+
+    <script>
+        let ball = document.getElementById("ball");
+        let positionY = 0;
+        let velocityY = 0;
+        let gravity = 0.5;
+        let bounceFactor = 0.8;
+        
+        function animateBall() {
+            velocityY += gravity; // Aplica a gravidade
+            positionY += velocityY; // Atualiza a posição
+
+            if (positionY >= window.innerHeight - 50) { // Checa se a bola bateu no chão
+                positionY = window.innerHeight - 50; // A bola não pode ultrapassar o chão
+                velocityY *= -bounceFactor; // Reverte a direção e aplica o fator de colisão
+            }
+
+            ball.style.bottom = positionY + "px";
+            requestAnimationFrame(animateBall); // Continua a animação
+        }
+
+        animateBall(); // Inicia a animação
+    </script>
+</body>
+</html>

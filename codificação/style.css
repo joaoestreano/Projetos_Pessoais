@@ -1,0 +1,109 @@
+/* Estilo para o tema claro */
+body {
+    background-color: #a1ebfd; /* Cor de fundo clara */
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    color: #333; /* Cor de texto escura - Corrigido para #333 */
+  }
+  
+  h1 {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 2rem;
+    color: #333; /* Cor escura para o título */
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  p {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 20px;
+    color: #333; /* Cor escura para o título */
+    text-align: center;
+    margin-bottom: 12px;
+  }
+  
+  /* Estilo do botão no tema claro */
+  button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: 2px solid #5990f7;
+    background-color: #0b1ae4;
+    color: white;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+    margin: 5px;
+  }
+  
+  /* Efeito hover para o botão no tema claro */
+  button:hover {
+    background-color: #3498db;
+    border-color: #3498db;
+  }
+  
+  /* Efeito de click (active) para o botão no tema claro */
+  button:active {
+    background-color: #1c5f7a;
+    border-color: #1c5f7a;
+    transform: scale(0.98);
+  }
+
+/* Estilo para o tema escuro */
+  body.tema-escuro {
+    background-color: #2c3e50; /* Cor de fundo escura */
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    color: #ecf0f1; /* Cor de texto clara */
+  }
+  
+  h1.tema-escuro {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 2rem;
+    color: #ecf0f1; /* Cor clara para o título */
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  p.tema-escuro {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 20px;
+    color: #ecf0f1; /* Cor clara para o título */
+    text-align: center;
+    margin-bottom: 12px;
+  }
+  
+  /* Estilo padrão do botão no tema escuro */
+  button.tema-escuro {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: 2px solid #2980b9;
+    background-color: #146ba5;
+    color: white;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+    margin: 5px;
+  }
+  
+  /* Efeito hover para o botão no tema escuro */
+  button.tema-escuro:hover {
+    background-color: #3498db;
+    border-color: #3498db;
+  }
+  
+  /* Efeito de click (active) para o botão no tema escuro */
+  button.tema-escuro:active {
+    background-color: #1c5f7a;
+    border-color: #1c5f7a;
+    transform: scale(0.98);
+  }
