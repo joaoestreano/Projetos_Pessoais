@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <!-- Definindo a codificação de caracteres como UTF-8 -->
+    <meta charset="UTF-8">
+    
+    <!-- Definindo a responsividade para dispositivos móveis -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Título da página -->
+    <title>Spotify Imersão</title>
+    
+    <!-- Links para arquivos de estilo CSS -->
+    <link rel="stylesheet" href="reset.css"> <!-- Reset CSS para normalizar estilos -->
+    <link rel="stylesheet" href="style.css"> <!-- Estilos principais da página -->
+
+    <!-- Links para ícones do Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/solid.css"
+        integrity="sha384-Tv5i09RULyHKMwX0E8wJUqSOaXlyu3SQxORObAI08iUwIalMmN5L6AvlPX2LMoSE" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/fontawesome.css"
+        integrity="sha384-jLKHWM3JRmfMU0A5x5AkjWkw/EYfGUAGagvnfryNV3F9VqM98XiIH7VBGVoxVSc7" crossorigin="anonymous" />
+</head>
+
+<body>
+    <!-- Barra lateral do aplicativo -->
+    <div class="sidebar">
+        <nav class="sidebar__navigation">
+            <!-- Logo do Spotify -->
+            <div class="logo">
+                <a href="">
+                    <img src="./assets/icons/logo-spotify.png" alt="Logo" />
+                </a>
+            </div>
+            <!-- Navegação principal -->
+            <ul>
+                <li>
+                    <!-- Link para a página inicial -->
+                    <a href="">
+                        <span class="fa fa-home"></span> <!-- Ícone de home -->
+                        <span>Início</span> <!-- Texto do menu -->
+                    </a>
+                </li>
+                <li>
+                    <!-- Link para a busca -->
+                    <a href="">
+                        <span class="fa fa-search"></span> <!-- Ícone de busca -->
+                        <span>Buscar</span> <!-- Texto do menu -->
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Seção de biblioteca do usuário -->
+        <div class="library">
+            <div class="library__content">
+                <!-- Botão para acessar a biblioteca do usuário -->
+                <button class="library__button">
+                    <span class="fa fas fa-book"></span> <!-- Ícone de biblioteca -->
+                    <span>Sua biblioteca</span> <!-- Texto do botão -->
+                </button>
+                <!-- Ícone para adicionar algo (ex: nova playlist) -->
+                <span class="fa fa-plus"></span>
+            </div>
+            
+            <!-- Seção de criação de playlist -->
+            <section class="section-playlist">
+                <div class="section-playlist__content">
+                    <!-- Texto informativo sobre a criação de playlist -->
+                    <span class="text title">Crie sua primeira playlist</span>
+                    <span class="text subtitle">É fácil, vamos te ajudar.</span>
+                    <!-- Botão para criar uma nova playlist -->
+                    <button class="section-playlist__button">
+                        <span>Criar playlist</span>
+                    </button>
+                </div>
+            </section>
+            
+            <!-- Seção de cookies -->
+            <div class="cookies">
+                <a href="">Cookies</a> <!-- Link para informações sobre cookies -->
+            </div>
+
+            <!-- Seção de idiomas -->
+            <div class="languages">
+                <!-- Botão para selecionar o idioma -->
+                <button class="languages__button">
+                    <span class="fa fa-globe"></span> <!-- Ícone de globo -->
+                    <span>Português do Brasil</span> <!-- Texto do idioma selecionado -->
+                </button>
+            </div>
+        </div>
+    </div>    
+
+</body>
+
+</html>
