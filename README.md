@@ -8,7 +8,7 @@ O principal objetivo deste repositório é fornecer um espaço onde eu possa gua
 
 ## Como Usar
 
-Cada projeto neste repositório é independente e pode ser executado de forma isolada. Se você se interessar por algum projeto específico, basta seguir as instruções contidas no diretório de cada um.
+Cada projeto neste repositório é independente e pode ser executado de forma isolada.
 
 ### Passos gerais para rodar os projetos:
 
