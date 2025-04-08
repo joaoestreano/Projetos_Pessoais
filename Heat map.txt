@@ -1,0 +1,202 @@
+✅ OBJETIVO
+Backend (Node + TS + PostgreSQL): Servir uma API com dados de latitude, longitude e intensidade.
+
+Frontend (HTML + Leaflet + leaflet.heat): Exibir um mapa com pontos de calor em degradê vermelho.
+
+🔧 1. CONFIGURAR O BACKEND
+📁 Estrutura de pastas:
+pgsql
+Copiar
+Editar
+heatmap-api/
+├── package.json
+├── tsconfig.json
+├── src/
+│   ├── index.ts
+│   ├── db.ts
+│   └── types.ts
+📦 Comandos para iniciar o projeto
+bash
+Copiar
+Editar
+mkdir heatmap-api && cd heatmap-api
+npm init -y
+npm install express pg cors
+npm install -D typescript ts-node-dev @types/node @types/express @types/pg @types/cors
+npx tsc --init
+mkdir src
+✍️ tsconfig.json
+Substitua o conteúdo por:
+
+json
+Copiar
+Editar
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "CommonJS",
+    "rootDir": "./src",
+    "outDir": "./dist",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
+  }
+}
+📜 package.json — scripts
+Edite os scripts assim:
+
+json
+Copiar
+Editar
+"scripts": {
+  "dev": "ts-node-dev src/index.ts",
+  "build": "tsc",
+  "start": "node dist/index.js"
+}
+📁 src/types.ts
+ts
+Copiar
+Editar
+export interface PontoCalor {
+  latitude: number;
+  longitude: number;
+  intensidade?: number;
+}
+📁 src/db.ts
+ts
+Copiar
+Editar
+import { Pool } from 'pg';
+
+export const pool = new Pool({
+  user: 'heatmap_user',
+  host: 'localhost',
+  database: 'heatmapdb',
+  password: '123456',
+  port: 5432,
+});
+Altere os dados conforme seu ambiente local.
+
+📁 src/index.ts
+ts
+Copiar
+Editar
+import express from 'express';
+import cors from 'cors';
+import { pool } from './db';
+import { PontoCalor } from './types';
+
+const app = express();
+const port = 3000;
+
+app.use(cors());
+
+app.get('/api/pontos-calor', async (req, res) => {
+  try {
+    const result = await pool.query<PontoCalor>('SELECT latitude, longitude, intensidade FROM pontos_calor');
+    
+    const heatData = result.rows.map(p => [
+      p.latitude,
+      p.longitude,
+      p.intensidade ?? 0.7
+    ]);
+
+    res.json(heatData);
+  } catch (error) {
+    console.error('Erro ao buscar pontos de calor:', error);
+    res.status(500).send('Erro ao buscar pontos de calor');
+  }
+});
+
+app.listen(port, () => {
+  console.log(`Servidor rodando em http://localhost:${port}`);
+});
+🐘 2. CONFIGURAR O BANCO DE DADOS NO PGADMIN
+A. Criar banco de dados
+Nome: heatmapdb
+
+B. Criar tabela com SQL
+sql
+Copiar
+Editar
+CREATE TABLE pontos_calor (
+  id SERIAL PRIMARY KEY,
+  latitude DOUBLE PRECISION NOT NULL,
+  longitude DOUBLE PRECISION NOT NULL,
+  intensidade REAL
+);
+
+INSERT INTO pontos_calor (latitude, longitude, intensidade) VALUES
+(-23.2237, -45.9009, 0.8),
+(-23.2250, -45.9050, 0.6),
+(-23.2280, -45.9020, 0.9);
+🚀 3. RODAR O BACKEND
+bash
+Copiar
+Editar
+npm run dev
+Verifique se está funcionando acessando:
+
+bash
+Copiar
+Editar
+http://localhost:3000/api/pontos-calor
+Você verá um JSON como:
+
+json
+Copiar
+Editar
+[
+  [-23.2237, -45.9009, 0.8],
+  [-23.225, -45.905, 0.6],
+  [-23.228, -45.902, 0.9]
+]
+🗺️ 4. CRIAR FRONTEND COM LEAFLET
+A. Crie um arquivo index.html
+html
+Copiar
+Editar
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Heatmap com Leaflet</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <style>
+    #map { height: 100vh; }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet.heat/dist/leaflet-heat.js"></script>
+  <script>
+    const map = L.map('map').setView([-23.2237, -45.9009], 15);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
+
+    fetch('http://localhost:3000/api/pontos-calor')
+      .then(response => response.json())
+      .then(data => {
+        L.heatLayer(data, {
+          radius: 25,
+          blur: 15,
+          maxZoom: 17,
+          gradient: {
+            0.4: 'rgba(255,0,0,0.4)',
+            0.6: 'rgba(255,0,0,0.6)',
+            0.8: 'rgba(255,0,0,0.8)',
+            1.0: 'rgba(255,0,0,1)'
+          }
+        }).addTo(map);
+      });
+  </script>
+</body>
+</html>
+B. Abrir no navegador
+Clique duas vezes no arquivo ou abra com "Live Server" do VS Code.
